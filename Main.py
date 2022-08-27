@@ -126,7 +126,3 @@ for c in range(0,len(list_deltaLm)):
 
 print("\nDECISIVE AUDIBILITY OF THE SPECTRA")
 print("The greatest decisive audibility is", round(greatest_deltaLm,2), "for the tone ftm=", tone_decisive_aud)
-
-
-#Coge el tono 131.9 como tono de mayor audibilidad ya que LS da mas alto porque faltan Lis en el cálculo. ftm debería ser 137.3.
-#Además los tonos que tiene en cuenta son 118.4 131.9 y 137.3 
