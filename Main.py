@@ -5,6 +5,9 @@ import _critical_band
 import numpy as np
 import _uncertainty
 
+#Annex E(informative) - Example for the determination of the tonal audibility
+#Consider that this list are: Frequencies fi and A-weighted narrow-band levels Li in the critical band with the
+#centre frequency 137,3 Hz of the first spectrum (not a full spectrum)
 EXAMPLE_SPECTRUM_FREQS=[96.9, 99.6, 102.3, 105.0, 107.7, 110.4, 113.0, 115.7, 118.4, 121.1, 
 123.8, 126.5, 129.2, 131.9, 134.6, 137.3, 140.0, 142.7, 145.3, 148.0, 150.7, 153.4, 156.1, 158.8, 
 161.5, 164.2, 166.9, 169.6, 172.3, 175.0, 177.6, 180.3, 183.0, 185.7, 188.4, 191.1, 193.8, 196.5]
