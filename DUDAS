@@ -1,0 +1,45 @@
+4. (NO ES DUDA ES ACLARACIÓN) Se ha cambiado la formula de LS ya que tenía puesto delta_f/delta_fe y en la definición pone que delta_fe para una ventana Hanning es: "effective bandwidth is the effective bandwidth in Hz; if a Hanning window is used then the effective bandwidth, Δfe is 1,5 times the frequency resolution (line spacing), Δf (see Annex A)."
+Por lo tanto debería ser (1/delta_fe o delta_f/delta_f*delta_fe)
+
+5. En el ejemplo toma f1 y f2 como múltiplos de delta_f, pero aun así los datos de la tabla no están todos separados por 2.7 por lo que aunque quisiera buscar los múltiplos de 2.7 más cercanos no me saldría lo mismo que en el ejemplo. 
+
+6. Antes al hacer la iteración de Ls una vez obtenido el valor inicial no volvía a calcular M con las líneas que cumplen Li<=Ls+6
+ahora si vuelvo a obtener M descartando las líneas que no cumplen, porque son las que hay que promediar
+
+24/06
+He añadido un criterio más para que compruebe si se puede considerar ft como tono antes de calcular Lt
+
+He añadido un else de len(list_iteration_2) ya que hay un max realtivo en 1 y al no cumplir la condición se para el programa
+
+27/06
+Los valores que se han cogido de entrada son solo los de la banda crítica del tono 137.3 con lo cual me faltan datos de Li para que los resultado sde los otros tonos coincidan.
+
+10/07
+Condiciones de distinctness. Si uso list_LS_final, cumplen pero me coge solo la línea de tono bajo estudio. Si uso list_Li_inicial, da valores de Lt más altos pero incumple e¡la condición del AB del tono
+Aun cogiendo list_LS_final los tonos que salen audibles son 118.4 137.3 y 183, pero según la norma deberían ser son 118.4 137.3 y 158.8
+
+*****************************************************************************************************************
+15/08 PUNTOS QUE SOLUCIONAR
+- Cómo descartar el tono 131.9 del cálculo. Ambos tonos cogen las mismas líneas espectrales para su LT ,lo cúal según la norma puede ocurrir, pero a la hora de la adición de tonos vecinos para LTm, no se pueden tener en cuenta las mismas líneas espectrales más de 1 vez. Se descartaría 131.9 porque es un tono menos pronunciado (Li de 131.9Hz< Li de 137Hz)
+
+-El no cumplimiento de las condiciones de distintividad en un tono impide que se realice el cálculo de audibilidad para dicho tono, pero no que dicho tono se tenga en cuenta para otros cálculos como la suma de tonos vecinos (ejemplo del tono 158.8)
+-En la última reunión quedamos que 158.8 se tenía en cuenta para tm pero no era un tono al que se debiera realizar el cálculo de audibilidad ya que nocumple las condiciones de distinctness. ¿Por qué en la norma calcula su audibilidad igualmente (tabla E.2)?
+
+-Incertidumbre
+
+18/08
+-Según la norma solo se calcula la audibilidad para los tonos que cumplan con el criterio de distintividad, y de entre ellos, se consideran presentes aquellos que tengan audidibilidad > 0. ¿Por qué sigue calculando la audibilidad para 158.8 si no cumple con el criterio de distintividad? Efectivamente estáría presente (aud>0) pero según la norma no debería estudiarse ese tono.
+Voy a calcular las aud para todos los potenciales tonos y luego descartar en función de la aud
+
+-Cuidado! EL primer diccionario es solo para comprobar las líneas, es decir, son Lis. Crear otro diccionario para los LTs que es lo que se suma en Ltm
+
+22/08
+-Creados diccionarios para Ls, Lt y aud. 
+
+-Comprobada la condición de fd. Duda, en la norma que solo se debe estudiar esta condición si hay exactamente 2 tonos en la BC
+
+-¿Hará todo esto bien con un espectro más grande?
+
+26/08
+Funcion criterio de líneas asignadas para Lt -> Ltm. En el diccionario se meten las listas en desorden debido al algoritmo con el que se hizo la función de tone level. Para comprobar si los elementos de las listas del diccionario son las mismas uso la función Counter que comprueba si los elementos de la lista son iguales aunque estén en desorden. PERO no devuelve true si hay algún elemnto de una lista que no esté en la otra. No se cúato de probable es que esto ocurra pero puede ser un problema.
+Por que en caso de que no se usen todos los mimos Li para dos Lt, los que no coincidan se siguen sumando al tono que los usa?
