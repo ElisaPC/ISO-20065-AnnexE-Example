@@ -112,6 +112,7 @@ for n in range(0,len(list_ft)):
 	LGm=_formula._critical_band_level(LSm,delta_f,delta_fm)
 	avm=_formula._masking_index(ftm)
 	delta_Lm=_formula.audibility(LTm, LGm, avm)
+	#Uncertainty
 	U_ftm=_uncertainty._uncertainty(dict_Li_LS[ftm], list_LT, delta_fm, delta_f)
 	list_deltaLm.append(delta_Lm)
 	print("Tone:", ftm, "-> For a masking index of av=",round(avm,2), "and a critical band level LGm=",round(LGm,2), "the DECISIVE audibility is", round(delta_Lm,2))	
