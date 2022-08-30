@@ -3,7 +3,8 @@ import numpy as np
 #Function to determine the uncertainty of each audible tone and of the decisive tones 
 #Param: 
 #	Inputs: list_Li_LS - list of Lis to be averaged to determine LS for each tone
-#			list_Li_Lt - list of Lis to be added to obtain LT for each tone
+#			list_Li_Lt - list of Lis to be added to obtain LT for each tone, or list of LT calculated for each tone that are
+#						to be summed for Ltm
 #			delta_fc - bandwith of the critical band
 #			delta_f - line spacing
 #	Output: Uncertainty with a cover factor k=1.645 for a 90 % coverage probability in a bilateral confidence interval
