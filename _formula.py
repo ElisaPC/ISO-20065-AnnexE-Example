@@ -1,6 +1,7 @@
 import numpy as np
 
 #Function that calculates the masking index
+#ISO 20065 5.3.6. Masking index (Formula 13)
 #Param: 
 #	Inputs: ft - tone frequency: frequency of the spectral line (or mid-band frequency of the narrow-band filter), to the level of
 #								 which the tone contributes most strongly
