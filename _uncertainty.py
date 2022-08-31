@@ -1,6 +1,7 @@
 import numpy as np
 
 #Function to determine the uncertainty of each audible tone and of the decisive tones 
+#ISO-20065. 6.Calculation of the uncertainty of the audibility ΔL (Formula 27)
 #Param: 
 #	Inputs: list_Li_LS - list of Lis to be averaged to determine LS for each tone
 #			list_Li_Lt - list of Lis to be added to obtain LT for each tone, or list of LT calculated for each tone that are
