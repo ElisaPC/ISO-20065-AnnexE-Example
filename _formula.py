@@ -101,3 +101,18 @@ def _tone_level(listTones, delta_f, LS, ft, Li, ft_index, delta_fe, dict_lines_a
 		LT=10*np.log10(Sum)
 	return LT, Tone_BW, LT_max, dict_lines_assigned
 
+
+#Function for the determination of the mean audibility of a number of spectra
+#The decisive audibility ΔLj is calculated for each narrow-band averaged spectrum (run
+#index j, J is the number). These J audibilities are averaged in energy terms to yield the mean audibility
+#Param:
+#	Inputs: list_decisve_aud - decisive audibility of each spectrum, to be averaged
+#	Output: mean_aud - mean audibility
+def mean_aud(list_decisive_aud):
+	Sum=0
+	J=len(list_decisive_aud)
+	for i in range(0,len(list_decisive_aud)):
+		Sum=Sum+np.power(10,0.1*list_decisive_aud[i])
+	mean_aud=10*np.log10((1/J)*Sum)
+	return mean_aud
+

@@ -30,7 +30,7 @@ def _critical_band(ft, total_list_f):
 			if f2>=total_list_f[m]:
 				f2_=total_list_f[m]
 
-	delta_fc=f2_-f1_
+	#delta_fc=f2_-f1_
 	return delta_fc,f1_,f2_
 
 
