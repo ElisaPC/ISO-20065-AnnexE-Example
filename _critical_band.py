@@ -2,8 +2,8 @@
 import numpy as np
 
 #Function that determines the width and limiting frequencies of the critical band with centre at ft
-#(with this method it takes as f1 the first value of the spectrum (taking into account the delta_f spacing),
-#since the f1 obtained by the formula does not have to be a spectral line of the list. )
+#(considering the line spacing for the values of f1 and f2)
+#ISO 20065 5.2 Width Δfc of the critical band (Formulas 2,4,5)
 #Param:
 #	Inputs: ft - frequency of the tone under study, center of the CB
 #			total_list_f - complete list of frequencies of the spectra to determine which freqs lie within the CB

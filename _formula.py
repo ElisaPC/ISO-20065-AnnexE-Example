@@ -12,6 +12,7 @@ def _masking_index(ft):
 
 
 #Function that calculates the critical band level
+#ISO 20065 5.3.5 Critical band level, LG, of the masking noise (Formula 12)
 #Param: 
 #	Inputs: LS - mean narrow band level: energy mean value of all narrow-band levels in a critical band that does not exceed
 #										 this mean value by more than 6 dB
@@ -25,6 +26,7 @@ def _critical_band_level(LS, delta_f, delta_fc):
 
 
 #Function that calculates the audibility
+#ISO 20065 5.3.7 Determination of the audibility, ΔL (Formula 14)
 #Param: 
 #	Inputs: LT - tone level: energy summation of the narrow-band level with the tone frequency, fT, and the lateral lines
 #							 about fT, assignable to this tone
@@ -36,23 +38,25 @@ def audibility(LT, LG, av):
 	return delta_L
 
 
-#Function that calculates LS after the first iteration
+#Function that calculates LS 
+#ISO 20065 5.3.2 Determination of the mean narrow-band level LS of the masking noise (Formula 6)
 #Param: 
 #	Inputs: M - number of spectral lines except the one under study:
 #			listTones_Li - list of the levels Li of the tones within the CB except for ft
 #			delta_f - line spacing: distance between neighbouring spectral lines
 #			delta_fe - effective bandwidth: is the effective bandwidth in Hz; if a Hanning window is used then the effective bandwidth, Δfe,
 #											is 1,5 times the frequency resolution (line spacing), Δf.
-#	Output: LS_ini - mean narrow band level after the first iteration. Initial LS
+#	Output: LS - mean narrow band level after the first iteration. Initial LS
 def _mean_narrow_band_level(M, listTones_ini, delta_f, delta_fe):
 	Sum=0
 	for i in range(0,len(listTones_ini)):
 		Sum=Sum+(np.power(10,0.1*listTones_ini[i]))
-	LS_ini=(10*np.log10((1/M)*Sum))+(10*np.log10(1/delta_fe))
-	return LS_ini
+	LS=(10*np.log10((1/M)*Sum))+(10*np.log10(1/delta_fe))
+	return LS
 
 
 #Function that calculates the tone level
+#ISO 20065 5.3.3 Determination of the tone level LT of a tone in a critical band (Formula 8)
 #Param: 
 #	Inputs: listTones - list of the levels Li of the tones within the CB that are under LS+6dB
 #			delta_f - line spacing: distance between neighbouring spectral lines
@@ -103,6 +107,7 @@ def _tone_level(listTones, delta_f, LS, ft, Li, ft_index, delta_fe, dict_lines_a
 
 
 #Function for the determination of the mean audibility of a number of spectra
+#ISO 20065 5.3.9 Determination of the mean audibility ΔL of a number of spectra (Formula 20)
 #The decisive audibility ΔLj is calculated for each narrow-band averaged spectrum (run
 #index j, J is the number). These J audibilities are averaged in energy terms to yield the mean audibility
 #Param:
